@@ -424,18 +424,38 @@
 
     /* Visit notification via ntfy.sh — pings a private topic once per browser session.
        Only fires on the live site (skips local previews) and dedupes within a session to
-       avoid refresh spam. Subscribe to the topic in the ntfy app to receive push notifications.
+       avoid refresh spam. Enriched with approximate (city-level) location from a free geo-IP
+       lookup, device/browser, and referrer. All values are approximate and best-effort;
+       geo lookup can be blocked by ad-blockers, in which case the ping still sends without it.
        If the topic ever gets spammed, just change the string here and resubscribe. */
     (function(){
       if(location.hostname!=='hi-prateek.github.io') return;      // live site only
       if(sessionStorage.getItem('visit_pinged')) return;          // once per tab session
       sessionStorage.setItem('visit_pinged','1');
-      var ref=document.referrer ? ('from '+document.referrer) : '(direct / bookmark)';
-      fetch('https://ntfy.sh/prateek-portfolio-a8f3k9x2q7',{
-        method:'POST',
-        body:'Someone just viewed your portfolio '+ref,
-        headers:{ Title:'Portfolio visit', Tags:'eyes' }
-      }).catch(function(){});
+
+      var ua=navigator.userAgent, os='Unknown', br='Browser';
+      if(/Windows/.test(ua)) os='Windows'; else if(/Android/.test(ua)) os='Android';
+      else if(/iPhone|iPad|iPod/.test(ua)) os='iOS'; else if(/Mac OS X/.test(ua)) os='macOS';
+      else if(/Linux/.test(ua)) os='Linux';
+      if(/Edg\//.test(ua)) br='Edge'; else if(/OPR\/|Opera/.test(ua)) br='Opera';
+      else if(/Chrome\//.test(ua)) br='Chrome'; else if(/Firefox\//.test(ua)) br='Firefox';
+      else if(/Safari\//.test(ua)) br='Safari';
+      var device=br+' on '+os;
+      var ref=document.referrer || 'direct / bookmark';
+
+      function send(loc){
+        fetch('https://ntfy.sh/prateek-portfolio-a8f3k9x2q7',{
+          method:'POST',
+          body:'📍 '+(loc||'location unknown')+'\n💻 '+device+'\n🔗 '+ref,
+          headers:{ Title:'Portfolio visit', Tags:'eyes' }
+        }).catch(function(){});
+      }
+      fetch('https://ipwho.is/').then(function(r){return r.json();}).then(function(d){
+        if(!d||d.success===false){ send(null); return; }
+        var loc=[d.city,d.region,d.country].filter(Boolean).join(', ');
+        if(d.connection&&d.connection.isp) loc+=' · '+d.connection.isp;
+        send(loc||null);
+      }).catch(function(){ send(null); });
     })();
   </script>
 
