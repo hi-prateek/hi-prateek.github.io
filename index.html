@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Prateek Pandey · Software Developer Engineer</title>
   <meta name="description" content="Prateek Pandey — Software Developer Engineer building production-grade GenAI, RAG, and automation systems with Python." />
-  <link rel="icon" type="image/png" href="favvv.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <link rel="canonical" href="https://hi-prateek.github.io/">
@@ -45,11 +48,15 @@
     ]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <style>
+    /* Self-hosted Inter (variable, latin subset) — no external CDNs */
+    @font-face{
+      font-family:"Inter"; font-style:normal; font-weight:100 900; font-display:swap;
+      src:url("fonts/inter.woff2") format("woff2");
+    }
+    /* Inline-SVG icon base (replaces the Boxicons font) */
+    .ic{ width:1em; height:1em; display:inline-block; flex:none; fill:none; stroke:currentColor;
+      stroke-width:2; stroke-linecap:round; stroke-linejoin:round; vertical-align:-.15em }
     :root{
       --bg:#f6f7fb; --bg-2:#ffffff; --card:#ffffff; --text:#0f172a; --muted:#64748b; --soft:#94a3b8;
       --line:#e6e8ef; --line-2:#dfe3ec;
@@ -94,9 +101,6 @@
     /* ---------- Hero ---------- */
     .hero{ padding:26px 0 8px; text-align:center }
     .avatar{ width:120px; height:120px; margin:0 auto 16px; border-radius:50%; object-fit:cover; border:4px solid var(--card); box-shadow:var(--shadow-lg); background:var(--card) }
-    .status{ display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:var(--muted); background:var(--card); border:1px solid var(--line-2); padding:6px 12px; border-radius:999px; margin-bottom:14px }
-    .status .live{ width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 4px rgba(22,163,74,.18); animation:pulse 2s infinite }
-    @keyframes pulse{ 50%{ box-shadow:0 0 0 7px rgba(22,163,74,0) } }
     .hero h1{ font-size:clamp(30px,9vw,44px); line-height:1.08; letter-spacing:-.03em; font-weight:900; margin:0 0 8px }
     .hero h1 .grad{ background:linear-gradient(120deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent }
     .hero .role{ font-size:15px; font-weight:700; color:var(--brand); margin-bottom:10px }
@@ -134,7 +138,7 @@
     .pcard h3{ font-size:18px; font-weight:800; letter-spacing:-.01em; margin:4px 0 10px }
     .pcard .impact{ margin:0 0 12px }
     .pcard .impact div{ display:flex; gap:8px; align-items:flex-start; color:var(--muted); font-size:14px; margin:5px 0 }
-    .pcard .impact i{ color:var(--brand); font-size:16px; margin-top:2px }
+    .pcard .impact .ic{ color:var(--brand); font-size:16px; margin-top:2px }
     .badges{ display:flex; flex-wrap:wrap; gap:6px }
     .badge{ font-size:11.5px; font-weight:600; color:var(--muted); background:var(--accent-soft); border-radius:8px; padding:4px 9px }
     .more{ display:inline-flex; align-items:center; gap:5px; margin-top:12px; font-size:13.5px; font-weight:700; color:var(--brand) }
@@ -148,7 +152,7 @@
     .exp-list{ margin:12px 0 0; padding:0; list-style:none }
     .exp-list li{ display:flex; gap:9px; align-items:flex-start; margin:8px 0; font-size:14.5px; color:var(--muted) }
     .exp-list li b{ color:var(--text) }
-    .exp-list i{ color:var(--brand); margin-top:3px }
+    .exp-list .ic{ color:var(--brand); font-size:18px; margin-top:2px }
     .skills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px }
     .skill{ font-size:13px; font-weight:600; background:var(--card); border:1px solid var(--line-2); border-radius:10px; padding:7px 11px }
 
@@ -164,7 +168,7 @@
     .status-msg{ font-size:14px; color:var(--muted); margin:10px 0 0; text-align:center }
     .quick{ display:grid; gap:10px; margin-top:14px }
     .quick a{ display:flex; align-items:center; gap:12px; padding:14px; border:1px solid var(--line-2); border-radius:13px; background:var(--bg-2); font-weight:600; font-size:14.5px }
-    .quick a i{ width:38px; height:38px; border-radius:10px; background:var(--accent-soft); color:var(--brand); display:grid; place-items:center; font-size:20px; flex:0 0 auto }
+    .quick a .qbadge{ width:38px; height:38px; border-radius:10px; background:var(--accent-soft); color:var(--brand); display:grid; place-items:center; font-size:20px; flex:0 0 auto }
     .quick a .sub{ display:block; font-size:12.5px; color:var(--muted); font-weight:500 }
     .quick a:active{ transform:scale(.98) }
 
@@ -177,10 +181,10 @@
       border-top:1px solid var(--line); display:flex; align-items:stretch }
     .bottomnav a{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
       color:var(--soft); font-size:11px; font-weight:600; transition:color .15s var(--ease) }
-    .bottomnav a i{ font-size:23px; transition:transform .15s var(--ease) }
+    .bottomnav a .ic{ font-size:23px; transition:transform .15s var(--ease) }
     .bottomnav a.on{ color:var(--brand) }
-    .bottomnav a.on i{ transform:translateY(-2px) }
-    .bottomnav a:active i{ transform:scale(.85) }
+    .bottomnav a.on .ic{ transform:translateY(-2px) }
+    .bottomnav a:active .ic{ transform:scale(.85) }
 
     /* ---------- Modal ---------- */
     .modal{ position:fixed; inset:0; z-index:1200; display:none; align-items:flex-end; justify-content:center; background:rgba(2,6,23,.55); backdrop-filter:blur(4px) }
@@ -196,7 +200,7 @@
     .sheet .hl-title{ font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); margin:16px 0 8px }
     .sheet ul.hl{ margin:0; padding:0; list-style:none }
     .sheet ul.hl li{ display:flex; gap:10px; align-items:flex-start; margin:10px 0; font-size:14.5px }
-    .sheet ul.hl li i{ color:var(--brand); font-size:17px; margin-top:2px; flex:0 0 auto }
+    .sheet ul.hl li .ic{ color:var(--brand); font-size:17px; margin-top:2px }
 
     .reveal{ opacity:0; transform:translateY(16px); transition:.55s var(--ease) }
     .reveal.in{ opacity:1; transform:none }
@@ -222,6 +226,27 @@
   </style>
 </head>
 <body>
+  <!-- Inline SVG icon sprite (self-hosted, replaces Boxicons CDN) -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2-2h3l2 2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-11.9 7.8L3 21l1.7-6.1A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.7A6 6 0 0 1 16 8Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+      <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 21V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v17"/><path d="M14 9h4a1 1 0 0 1 1 1v11"/><path d="M9 7h2M9 11h2M9 15h2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m8.5 11 3.5 3.5L22 4"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9.5 12 2l9 7.5"/><path d="M5 9v11a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+      <symbol id="i-trending" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="M8 6l-6 6 6 6"/></symbol>
+    </defs>
+  </svg>
+
   <header>
     <div class="wrap topbar">
       <a href="#home" class="logo"><span class="dot">P</span><span>Prateek Pandey</span></a>
@@ -231,7 +256,7 @@
         <a href="#contact" data-spy>Contact</a>
       </nav>
       <div class="top-actions">
-        <button class="iconbtn" id="theme" aria-label="Toggle theme"><i class='bx bx-moon'></i></button>
+        <button class="iconbtn" id="theme" aria-label="Toggle theme"><svg class="ic"><use href="#i-moon"/></svg></button>
       </div>
     </div>
   </header>
@@ -244,13 +269,13 @@
       <div class="role">Software Developer Engineer</div>
       <p class="intro">I build production-grade GenAI, RAG, and automation systems in Python that turn messy inputs into polished, reliable outputs.</p>
       <div class="cta">
-        <a class="btn primary" href="#projects"><i class='bx bx-folder-open'></i> View Projects</a>
-        <a class="btn ghost" href="#contact"><i class='bx bx-message-rounded-dots'></i> Get in touch</a>
+        <a class="btn primary" href="#projects"><svg class="ic"><use href="#i-folder"/></svg> View Projects</a>
+        <a class="btn ghost" href="#contact"><svg class="ic"><use href="#i-chat"/></svg> Get in touch</a>
       </div>
       <div class="socials">
-        <a href="https://github.com/hi-prateek" target="_blank" rel="noopener" aria-label="GitHub"><i class='bx bxl-github'></i></a>
-        <a href="https://www.linkedin.com/in/heyprateekpandey" target="_blank" rel="noopener" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-        <a href="mailto:work.prateekpandey@gmail.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+        <a href="https://github.com/hi-prateek" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+        <a href="https://www.linkedin.com/in/heyprateekpandey" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+        <a href="mailto:work.prateekpandey@gmail.com" aria-label="Email"><svg class="ic"><use href="#i-mail"/></svg></a>
       </div>
     </section>
 
@@ -268,13 +293,13 @@
       <h2>Experience &amp; Skills</h2>
       <div class="exp-card">
         <div class="exp-top">
-          <span class="co"><i class='bx bx-buildings'></i></span>
+          <span class="co"><svg class="ic"><use href="#i-building"/></svg></span>
           <div><b>Everest Group</b><span>Software Developer Engineer · 2023 – Present · Gurugram</span></div>
         </div>
         <ul class="exp-list">
-          <li><i class='bx bx-check-circle'></i><span>Cut client-ready report production time by <b>70%+</b>, now running across 150+ recurring workflows.</span></li>
-          <li><i class='bx bx-check-circle'></i><span>Lowered AI operating costs by <b>~30%</b> and improved processing speed <b>50–60%</b> with reusable pipelines.</span></li>
-          <li><i class='bx bx-check-circle'></i><span>Drove firm-wide adoption of GenAI tooling, onboarding non-technical teams with zero training.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Cut client-ready report production time by <b>70%+</b>, now running across 150+ recurring workflows.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Lowered AI operating costs by <b>~30%</b> and improved processing speed <b>50–60%</b> with reusable pipelines.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Drove firm-wide adoption of GenAI tooling, onboarding non-technical teams with zero training.</span></li>
         </ul>
         <div class="skills">
           <span class="skill">Python</span><span class="skill">Flask / FastAPI</span><span class="skill">OpenAI API</span>
@@ -295,13 +320,13 @@
           <div class="field"><label for="name">Name</label><input class="input" id="name" name="name" required placeholder="Your name"><span class="err" id="e-name"></span></div>
           <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" required placeholder="name@company.com"><span class="err" id="e-email"></span></div>
           <div class="field"><label for="msg">Message</label><textarea class="input" id="msg" name="message" required placeholder="What process are you trying to automate?"></textarea><span class="err" id="e-msg"></span></div>
-          <button class="btn primary" type="submit" style="width:100%"><i class='bx bx-send'></i> Send message</button>
+          <button class="btn primary" type="submit" style="width:100%"><svg class="ic"><use href="#i-send"/></svg> Send message</button>
           <p class="status-msg" id="status" aria-live="polite"></p>
         </form>
         <div class="quick">
-          <a href="mailto:work.prateekpandey@gmail.com"><i class='bx bx-envelope'></i><span>Email<span class="sub">work.prateekpandey@gmail.com</span></span></a>
-          <a href="https://www.linkedin.com/in/heyprateekpandey" target="_blank" rel="noopener"><i class='bx bxl-linkedin'></i><span>LinkedIn<span class="sub">in/heyprateekpandey</span></span></a>
-          <a href="https://github.com/hi-prateek" target="_blank" rel="noopener"><i class='bx bxl-github'></i><span>GitHub<span class="sub">github.com/hi-prateek</span></span></a>
+          <a href="mailto:work.prateekpandey@gmail.com"><span class="qbadge"><svg class="ic"><use href="#i-mail"/></svg></span><span>Email<span class="sub">work.prateekpandey@gmail.com</span></span></a>
+          <a href="https://www.linkedin.com/in/heyprateekpandey" target="_blank" rel="noopener"><span class="qbadge"><svg class="ic"><use href="#i-linkedin"/></svg></span><span>LinkedIn<span class="sub">in/heyprateekpandey</span></span></a>
+          <a href="https://github.com/hi-prateek" target="_blank" rel="noopener"><span class="qbadge"><svg class="ic"><use href="#i-github"/></svg></span><span>GitHub<span class="sub">github.com/hi-prateek</span></span></a>
         </div>
       </div>
     </section>
@@ -311,22 +336,23 @@
 
   <!-- Bottom nav (mobile) -->
   <nav class="bottomnav" aria-label="Mobile">
-    <a href="#home" data-spy class="on"><i class='bx bx-home-alt'></i>Home</a>
-    <a href="#projects" data-spy><i class='bx bx-folder'></i>Work</a>
-    <a href="#about" data-spy><i class='bx bx-user'></i>About</a>
-    <a href="#contact" data-spy><i class='bx bx-envelope'></i>Contact</a>
+    <a href="#home" data-spy class="on"><svg class="ic"><use href="#i-home"/></svg>Home</a>
+    <a href="#projects" data-spy><svg class="ic"><use href="#i-folder"/></svg>Work</a>
+    <a href="#about" data-spy><svg class="ic"><use href="#i-user"/></svg>About</a>
+    <a href="#contact" data-spy><svg class="ic"><use href="#i-mail"/></svg>Contact</a>
   </nav>
 
   <div class="modal" id="modal" aria-hidden="true"></div>
 
   <script>
     const byId=id=>document.getElementById(id), qsa=(s,e=document)=>[...e.querySelectorAll(s)];
+    const IC=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`;
 
     /* Theme */
     const prefDark=matchMedia('(prefers-color-scheme: dark)').matches;
     const saved=localStorage.getItem('theme');
     if(saved==='dark'||(!saved&&prefDark)) document.documentElement.classList.add('dark');
-    const setThemeIcon=()=>byId('theme').innerHTML=document.documentElement.classList.contains('dark')?"<i class='bx bx-sun'></i>":"<i class='bx bx-moon'></i>";
+    const setThemeIcon=()=>byId('theme').innerHTML=IC(document.documentElement.classList.contains('dark')?'sun':'moon');
     setThemeIcon();
     byId('theme').addEventListener('click',()=>{document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');setThemeIcon();});
 
@@ -405,9 +431,9 @@
         const el=document.createElement('article');
         el.className='pcard'; el.tabIndex=0; el.setAttribute('role','button'); el.setAttribute('aria-label',p.name);
         el.innerHTML=`<div class="ptag">${p.tag}</div><h3>${p.name}</h3>`+
-          `<div class="impact">${p.impact.map(x=>`<div><i class='bx bx-trending-up'></i><span>${x}</span></div>`).join('')}</div>`+
+          `<div class="impact">${p.impact.map(x=>`<div>${IC('trending')}<span>${x}</span></div>`).join('')}</div>`+
           `<div class="badges">${p.badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>`+
-          `<span class="more">View details <i class='bx bx-right-arrow-alt'></i></span>`;
+          `<span class="more">View details ${IC('arrow-right')}</span>`;
         const open=()=>openSheet(p);
         el.addEventListener('click',open);
         el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
@@ -424,7 +450,7 @@
         `<div class="shead"><div><div class="ptag">${p.tag}</div><h3>${p.name}</h3></div><button class="x" id="sx" aria-label="Close">&times;</button></div>`+
         `<p class="body">${p.body}</p>`+
         `<div class="hl-title">Notable engineering</div>`+
-        `<ul class="hl">${p.highlights.map(h=>`<li><i class='bx bx-code-alt'></i><span>${h}</span></li>`).join('')}</ul>`+
+        `<ul class="hl">${p.highlights.map(h=>`<li>${IC('code')}<span>${h}</span></li>`).join('')}</ul>`+
         `<div class="hl-title">Stack</div>`+
         `<div class="badges">${p.badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div></div>`;
       modal.classList.add('open'); document.body.style.overflow='hidden';
@@ -492,9 +518,7 @@
     })();
   </script>
 
-  <!-- Analytics: GoatCounter (privacy-friendly, private dashboard).
-       SETUP: create a free site at https://www.goatcounter.com/ , then replace
-       YOURCODE below with the code you chose (e.g. prateek -> prateek.goatcounter.com). -->
+  <!-- Analytics: GoatCounter (privacy-friendly, private dashboard). -->
   <script data-goatcounter="https://heyprateekpandey.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </body>
